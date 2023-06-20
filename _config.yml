@@ -17,7 +17,8 @@ parse:
     - replacements
     - smartquotes
     - substitution
-
+    
+only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -51,3 +52,20 @@ launch_buttons:
   notebook_interface: "jupyterlab"  # or "classic"
   binderhub_url: https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
   thebe: true
+  
+sphinx:
+  config:
+    html_theme_options:
+      use_download_button: false
+      repository_url: https://github.com/gewios/gdsjb
+      use_issues_button: true
+      use_repository_button: true
+      use_edit_page_button: true
+      launch_buttons: {
+        binderhub_url: "https://mybinder.org",
+        thebe: true
+    }
+    bibtex_reference_style: author_year
+
+bibtex_bibfiles:
+  - references.bib
