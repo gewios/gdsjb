@@ -1,0 +1,2232 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>9. 几何对象模型概述 &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter2_geometryobject';</script>
+    <link rel="canonical" href="https://gewios.github.io/geojb/chapter2_geometryobject.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="4. 开放科学与开放GIS(Open Science and Open GIS)" href="chapter1_base.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Template</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">1. Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">2. Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">3. Notebooks with MyST Markdown</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Content</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1_base.html">4. <font color="Blue" size="5"><strong>开放科学与开放GIS(Open Science and Open GIS)</strong></font></a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. <font color="Blue" size="5"><strong>几何对象模型概述</strong></font></a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/gewios/geojb/main?urlpath=lab/tree/docs/chapter2_geometryobject.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gewios/geojb" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gewios/geojb/edit/main/docs/chapter2_geometryobject.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gewios/geojb/issues/new?title=Issue%20on%20page%20%2Fchapter2_geometryobject.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter2_geometryobject.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="_sources/chapter2_geometryobject.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><font color=Blue size=5>几何对象模型概述</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9. <font color="Blue" size="5"><strong>几何对象模型概述</strong></font></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-point">9.1. <font color="Blue" size="5"><strong>Point</strong></font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.1.1. <font color="Blue" size="5"><strong>Point的属性与方法</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-linestring">9.2. <font color="Blue" size="5"><strong>LineString</strong></font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">9.2.1. <font color="Blue" size="5"><strong>LineString的属性与方法</strong></font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-linear-referencing">9.2.2. <font color="Blue" size="5"><strong>线性参考（Linear Referencing）</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-polygon">9.3. <font color="Blue" size="5"><strong>Polygon</strong></font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9.3.1. <font color="Blue" size="5"><strong>Polygon的属性与方法</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-xy">9.4. <font color="Blue" size="5"><strong>从文本文件中读取XY坐标</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">9.5. <font color="Blue" size="5"><strong>几何集合对象</strong></font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">9.5.1. <font color="Blue" size="5"><strong>几何集合对象的属性与方法</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">9.6. <font color="Blue" size="5"><strong>几何对象通用属性和方法</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">10. <font color="Blue" size="5"><strong>空间谓词与空间关系</strong></font></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-unary-predicates">10.1. <font color="Blue" size="5"><strong>一元谓词（Unary Predicates）</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-binary-predicates">10.2. <font color="Blue" size="5"><strong>二元谓词（Binary Predicates）</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">10.3. <font color="Blue" size="5"><strong>九交模型关系</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">11. <font color="Blue" size="5"><strong>空间操作运算</strong></font></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">11.1. <font color="Blue" size="5"><strong>基于集合理论的操作运算</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">11.2. <font color="Blue" size="5"><strong>其它操作运算</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">11.3. <font color="Blue" size="5"><strong>仿射变换</strong></font></a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><font color=Blue size=6><center><strong>第二章 几何对象模型</strong></center></p>
+<p><font color=Blue size=5>地理空间的矢量表达中，用点、线、面（多边形）等几何对象来表达地理要素的几何形状。<strong>Shapely</strong>是GEOS(Geometry Engine - Open Source) 的Python接口，提供了矢量空间数据的几何对象模型及相应的空间操作运算。GEOS是JTS（Java Topology Suite）的C++实现，也是PostgreSQL的空间扩展PostGIS的几何引擎。JTS和GEOS遵循OGC简单要素访问规范。</p>
+<p><font color=Blue size=5>本章主要阐述Shapely中的几何对象模型概述、空间谓词与空间关系、空间操作运算。</p>
+<section class="tex2jax_ignore mathjax_ignore" id="font-color-blue-size-5">
+<h1><span class="section-number">9. </span><font color=Blue size=5><strong>几何对象模型概述</strong><a class="headerlink" href="#font-color-blue-size-5" title="Permalink to this heading">#</a></h1>
+<p><font color=Blue size=5>Shapely实现的几何对象基本类型有Point、LineString和Polygon。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>Point</strong>：表示空间中的单个点。点可以是二维（x，y）或三维（x，y，z）。</p></li>
+<li><p><font color=Blue size=5><strong>LineString</strong>：表示连接在一起形成一条线的一系列点，至少由两个坐标元组的列表组成。</p></li>
+<li><p><font color=Blue size=5><strong>Polygon</strong>：表示一个填充区域，该区域至少由三个坐标元组的列表和孔多边形（可能）列表组成，坐标元组构成外层环。</p></li>
+</ul>
+<p><img alt="image.png" src="attachment:763f68ba-0a80-4ea2-ba49-9696d1835e3b.png" /></p>
+<p><font color=Blue size=5>Shapely还提供了几何对象的集合类型：MultiPoint、MultiLineString 和MultiPolygon。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>MultiPoint</strong>：表示点的集合，由坐标元组列表组成。</p></li>
+<li><p><font color=Blue size=5><strong>MultiLineString</strong>：表示线几何的集合，由一系列类似线的列表组成。</p></li>
+<li><p><font color=Blue size=5><strong>MultiPolygon</strong>：表示多边形的集合，该集合由构成多边形的一系列外环和空洞组成。</p></li>
+</ul>
+<section id="font-color-blue-size-5-point">
+<h2><span class="section-number">9.1. </span><font color=Blue size=5><strong>Point</strong><a class="headerlink" href="#font-color-blue-size-5-point" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>创建点仅需将x和y坐标（或可选的z坐标）传递到point()对象.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary geometric objects from shapely module</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Polygon</span>
+
+<span class="c1"># Create Point geometric object(s) with coordinates</span>
+<span class="n">point1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">111.89</span><span class="p">,</span> <span class="mf">25.78</span><span class="p">)</span>
+<span class="n">point2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">115.69</span><span class="p">,</span> <span class="mf">23.68</span><span class="p">)</span>
+<span class="n">point3</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">117.89</span><span class="p">,</span> <span class="mf">26.78</span><span class="p">)</span>
+<span class="n">point3D</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">111.89</span><span class="p">,</span><span class="mf">25.78</span><span class="p">,</span> <span class="mf">888.88</span><span class="p">)</span> <span class="c1"># Shapely是一个平面几何库，在几何分析中忽略z值。</span>
+
+<span class="c1"># What is the type of the point?</span>
+<span class="n">point_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">point1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">point1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">point3D</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">point1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span>\<span class="n">ipykernel_4060</span>\<span class="mf">2957195284.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Import necessary geometric objects from shapely module</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Create Point geometric object(s) with coordinates</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">point1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">111.89</span><span class="p">,</span> <span class="mf">25.78</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;shapely&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3><span class="section-number">9.1.1. </span><font color=Blue size=5><strong>Point的属性与方法</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p><font color=Blue size=5>点几何对象提供了内置的属性和方法可供访问，其中最常用的是能够提取点的坐标和计算点之间的欧几里德距离。</p>
+<p><font color=Blue size=5>提取一个点的坐标，有几种不同的方法：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the coordinates</span>
+<span class="n">point_coords</span> <span class="o">=</span> <span class="n">point1</span><span class="o">.</span><span class="n">coords</span>
+
+<span class="c1"># What is the type of this?</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">point_coords</span><span class="p">))</span>
+
+<span class="c1"># Get x and y coordinates</span>
+<span class="n">xy</span> <span class="o">=</span> <span class="n">point_coords</span><span class="o">.</span><span class="n">xy</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;point_coords.xy type is:&quot;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">xy</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;point_coords.xy values is:&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="p">)</span>
+
+<span class="c1"># Get x, y coordinates of Point1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">point1</span><span class="o">.</span><span class="n">x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">point1</span><span class="o">.</span><span class="n">y</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;point.x is :&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;point.y is :&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font color=Blue size=5><strong>计算两点之间的距离</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the distance between point1 and point2</span>
+<span class="n">point_dist</span> <span class="o">=</span> <span class="n">point1</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">point2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distance between the points is </span><span class="si">{0:.2f}</span><span class="s2"> decimal degrees&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">point_dist</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font color=Blue size=5>注：地理信息系统中距离</p>
+<p><font color=Blue size=5>在Shapely中，距离是平面上两点之间的欧氏距离或线性距离。如果我们想计算地球表面的实际距离，则需要计算球体上的距离。通常情况下，地球的赤道半径为6378公里，极地半径为6356公里，即相差22公里。以下使用这两个半径计算两点之间的球面距离、以及两点之间的WGS84椭球面距离。</p>
+<p><font color=Blue size=5>pyproj.Geod支持大地解算的正算和逆算，Geod类的初始化输入可以是椭球体参数，也可以是椭球体名称，如示例代码中的“WGS84”。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5>正向变换：根据起始点的经度和纬度，加上前向的方位角和距离，确定终点的经度、纬度和后向方位角。<br />
+<font color=Blue size=4><em>lons2, lats2, back_az = geod.fwd(lons1, lats1, forward_az, dist)</em></p></li>
+<li><p><font color=Blue size=5>逆向变换：根据两点经纬度，计算前向、后向方位角和距离。<br />
+<font color=Blue size=4><em>forward_az, back_az, dist = geod.inv(lons1, lats1, lons2, lats2)</em></p></li>
+<li><p><font color=Blue size=5>说明：以上角度单位为度，距离单位为米。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># law of cosines - determines the great-circle distance between two points on a sphere given their longitudes and latitudes based on &quot;basic math&quot;</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">acos</span><span class="p">,</span><span class="n">sin</span><span class="p">,</span><span class="n">cos</span><span class="p">,</span><span class="n">radians</span>
+
+<span class="n">p1x</span><span class="o">=</span><span class="n">radians</span><span class="p">(</span><span class="n">point1</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="n">p1y</span><span class="o">=</span><span class="n">radians</span><span class="p">(</span><span class="n">point1</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="n">p2x</span><span class="o">=</span><span class="n">radians</span><span class="p">(</span><span class="n">point2</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="n">p2y</span><span class="o">=</span><span class="n">radians</span><span class="p">(</span><span class="n">point2</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>            
+<span class="n">distance</span> <span class="o">=</span> <span class="n">acos</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">p1y</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">p2y</span><span class="p">)</span><span class="o">+</span><span class="n">cos</span><span class="p">(</span><span class="n">p1y</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">p2y</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">p2x</span><span class="o">-</span><span class="n">p1x</span><span class="p">))</span><span class="o">*</span><span class="mi">6378</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;</span><span class="si">{0:8.4f}</span><span class="s2"> for equatorial radius in km&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">distance</span><span class="p">))</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="n">acos</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">p1y</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">p2y</span><span class="p">)</span><span class="o">+</span><span class="n">cos</span><span class="p">(</span><span class="n">p1y</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">p2y</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">p2x</span><span class="o">-</span><span class="n">p1x</span><span class="p">))</span><span class="o">*</span><span class="mi">6356</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;</span><span class="si">{0:8.4f}</span><span class="s2"> for polar radius in km&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">distance</span><span class="p">))</span>
+
+<span class="c1"># with pyproj</span>
+<span class="kn">import</span> <span class="nn">pyproj</span>
+
+<span class="n">geod</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Geod</span><span class="p">(</span><span class="n">ellps</span><span class="o">=</span><span class="s1">&#39;WGS84&#39;</span><span class="p">)</span>
+
+<span class="n">angle1</span><span class="p">,</span><span class="n">angle2</span><span class="p">,</span><span class="n">distance</span> <span class="o">=</span> <span class="n">geod</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">point1</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point1</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">point2</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point2</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:8.4f}</span><span class="s2"> for ellipsoid WGS84 in km&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">distance</span><span class="o">/</span><span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="font-color-blue-size-5-linestring">
+<h2><span class="section-number">9.2. </span><font color=Blue size=5><strong>LineString</strong><a class="headerlink" href="#font-color-blue-size-5-linestring" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>创建LineString对象与创建点的方式非常相似。可以使用Point点对象列表或传递坐标元组来创建线几何对象。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a LineString from our Point objects</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">])</span>
+
+<span class="c1"># It is also possible to use coordinate tuples having the same outcome</span>
+<span class="n">line2</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mf">111.89</span><span class="p">,</span> <span class="mf">25.78</span><span class="p">),</span> <span class="p">(</span><span class="mf">115.69</span><span class="p">,</span> <span class="mf">23.68</span><span class="p">),</span> <span class="p">(</span><span class="mf">117.89</span><span class="p">,</span> <span class="mf">26.78</span><span class="p">)])</span>
+<span class="c1"># Let’s see how our LineString looks like</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">line2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3><span class="section-number">9.2.1. </span><font color=Blue size=5><strong>LineString的属性与方法</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p><font color=Blue size=5>LineString对象有许多有用的内置属性和功能。例如，可以提取线串的坐标或长度，计算线的质心，沿线以特定距离创建点，计算线到指定点的最近距离，并简化几何图形。</p>
+<p><font color=Blue size=5>以下代码提取线串的相关信息：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get x and y coordinates of the line</span>
+<span class="n">lxy</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">xy</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;line的xy坐标：&quot;</span><span class="p">,</span> <span class="n">lxy</span><span class="p">)</span>
+
+<span class="c1"># Extract x coordinates</span>
+<span class="n">line_x</span> <span class="o">=</span> <span class="n">lxy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Extract y coordinates </span>
+<span class="n">line_y</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;line的x坐标：&quot;</span><span class="p">,</span> <span class="n">line_x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;line的y坐标：&quot;</span><span class="p">,</span> <span class="n">line_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the lenght of the line</span>
+<span class="n">l_length</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span>
+
+<span class="c1"># Get the centroid of the line</span>
+<span class="n">l_centroid</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">centroid</span>
+
+<span class="c1"># What type is the centroid?</span>
+<span class="n">centroid_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">l_centroid</span><span class="p">)</span>
+
+<span class="c1"># Print the outputs</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Length of our line: </span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">l_length</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Centroid of our line: &quot;</span><span class="p">,</span> <span class="n">l_centroid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of the centroid:&quot;</span><span class="p">,</span> <span class="n">centroid_type</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="font-color-blue-size-5-linear-referencing">
+<h3><span class="section-number">9.2.2. </span><font color=Blue size=5><strong>线性参考（Linear Referencing）</strong><a class="headerlink" href="#font-color-blue-size-5-linear-referencing" title="Permalink to this heading">#</a></h3>
+<p><font color=Blue size=5>使用一维参照系统沿线性要素（如LineStrings、MultiLineStrings）指定位置非常有用。Shapely支持基于长度或距离的线性参考，计算沿几何对象到给定点投影的距离，或计算沿几何对象在给定距离上的点。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.interpolate(distance[, normalized=False])</strong>：返回沿线性几何对象指定距离处的点。如果normalized参数为真，则距离将被解释为占几何对象整个长度的多少，如0.5为整个长度的一半。</p></li>
+<li><p><font color=Blue size=5><strong>object.project(other[, normalized=False])</strong>：返回沿此几何对象到距离另一个对象最近的点的距离。如果normalized参数为真，则距离将被解释为占几何对象整个长度的多少，如0.5为整个长度的一半。project（）方法是interpolate（）的逆方法。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">ip</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ip</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 可以使用线性参照方法以指定的距离切割线几何对象。</span>
+
+<span class="k">def</span> <span class="nf">cut</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+    <span class="c1"># Cuts a line in two at a distance from its starting point</span>
+    <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;=</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">distance</span> <span class="o">&gt;=</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">LineString</span><span class="p">(</span><span class="n">line</span><span class="p">)]</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
+        <span class="n">pd</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">pd</span> <span class="o">==</span> <span class="n">distance</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span>
+                <span class="n">LineString</span><span class="p">(</span><span class="n">coords</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">LineString</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">:])]</span>
+        <span class="k">if</span> <span class="n">pd</span> <span class="o">&gt;</span> <span class="n">distance</span><span class="p">:</span>
+            <span class="n">cp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span>
+                <span class="n">LineString</span><span class="p">(</span><span class="n">coords</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">[(</span><span class="n">cp</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">cp</span><span class="o">.</span><span class="n">y</span><span class="p">)]),</span>
+                <span class="n">LineString</span><span class="p">([(</span><span class="n">cp</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">cp</span><span class="o">.</span><span class="n">y</span><span class="p">)]</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">:])]</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cut</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cut</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="font-color-blue-size-5-polygon">
+<h2><span class="section-number">9.3. </span><font color=Blue size=5><strong>Polygon</strong><a class="headerlink" href="#font-color-blue-size-5-polygon" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>创建多边形对象与创建Point和LineString的逻辑相同，但多边形对象只接受坐标元组作为输入。多边形至少需要三个坐标元组。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Polygon from the coordinates</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mf">111.89</span><span class="p">,</span> <span class="mf">25.78</span><span class="p">),</span> <span class="p">(</span><span class="mf">115.69</span><span class="p">,</span> <span class="mf">23.68</span><span class="p">),</span> <span class="p">(</span><span class="mf">117.89</span><span class="p">,</span> <span class="mf">26.78</span><span class="p">)])</span>
+
+<span class="c1"># 也可以使用已有的点对象，但多边形对象需要x，y坐标作为输入</span>
+<span class="n">poly2</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([[</span><span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">]])</span>
+
+<span class="c1"># Geometry type can be accessed as a String</span>
+<span class="n">poly_type</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">geom_type</span>
+
+<span class="c1"># Using the Python&#39;s type function gives the type in a different format</span>
+<span class="n">poly_type2</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s see how our Polygon looks like</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">poly2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;多边形的几何类型:&quot;</span><span class="p">,</span> <span class="n">poly_type</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;多边形的对象类型:&quot;</span><span class="p">,</span> <span class="n">poly_type2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><font color=Blue size=5>请注意：多边形的坐标由双圆括号包围。这是因为多边形内部可能有孔。可以使用外部坐标和内部坐标（可选）构建多边形，其中内部坐标在多边形内创建孔。</p>
+<p><font color=Blue size=5>创建带空洞的多边形：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 外环坐标元组列表</span>
+<span class="n">world_exterior</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">90</span><span class="p">)]</span>
+
+<span class="c1"># 内部空洞坐标元组列表，注意：可能有多个孔，需要提供一个孔列表[[......],...[......]]</span>
+<span class="n">hole</span> <span class="o">=</span> <span class="p">[[(</span><span class="o">-</span><span class="mi">170</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">170</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="mi">170</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="mi">170</span><span class="p">,</span> <span class="mi">80</span><span class="p">)]]</span>
+
+<span class="c1"># World without a hole</span>
+<span class="n">world</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="n">world_exterior</span><span class="p">)</span>
+
+<span class="c1"># Now we can construct our Polygon with the hole inside</span>
+<span class="n">world_has_a_hole</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="n">world_exterior</span><span class="p">,</span> <span class="n">holes</span><span class="o">=</span><span class="n">hole</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">world</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">world_has_a_hole</span><span class="p">)</span>
+
+<span class="nb">type</span><span class="p">(</span><span class="n">world_has_a_hole</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_has_a_hole</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3><span class="section-number">9.3.1. </span><font color=Blue size=5><strong>Polygon的属性与方法</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p><font color=Blue size=5>多边形的主要属性有：面积、质心、MBR、外部和外部长度等。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the centroid of the Polygon</span>
+<span class="n">world_centroid</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">centroid</span>
+
+<span class="c1"># Get the area of the Polygon</span>
+<span class="n">world_area</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">area</span>
+
+<span class="c1"># Get the bounds of the Polygon (i.e. bounding box)</span>
+<span class="n">world_bbox</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">bounds</span>
+
+<span class="c1"># Get the exterior of the Polygon</span>
+<span class="n">world_ext</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">exterior</span>
+
+<span class="c1"># Get the length of the exterior</span>
+<span class="n">world_ext_length</span> <span class="o">=</span> <span class="n">world_ext</span><span class="o">.</span><span class="n">length</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Poly centroid: &quot;</span><span class="p">,</span> <span class="n">world_centroid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Poly Area: &quot;</span><span class="p">,</span> <span class="n">world_area</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Poly Bounding Box: &quot;</span><span class="p">,</span> <span class="n">world_bbox</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Poly Exterior: &quot;</span><span class="p">,</span> <span class="n">world_ext</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Poly Exterior Length: &quot;</span><span class="p">,</span> <span class="n">world_ext_length</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="font-color-blue-size-5-xy">
+<h2><span class="section-number">9.4. </span><font color=Blue size=5><strong>从文本文件中读取XY坐标</strong><a class="headerlink" href="#font-color-blue-size-5-xy" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>我们可以使用Python中常用的pandas包读取文本文件中的坐标数据，并转换为DataFrame类型，然后根据DataFrame中的坐标数据创建点几何对象。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/globalcities.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+ 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 根据df(DataFrame)中的Longitude、Latitude数据创建点几何对象。</span>
+
+<span class="k">def</span> <span class="nf">make_point</span><span class="p">(</span><span class="n">row</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Longitude&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">])</span>
+
+<span class="c1"># apply()方法中的参数axis=1，表示逐行向下处理</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;points&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">make_point</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">9.5. </span><font color=Blue size=5><strong>几何集合对象</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>在某些情况下，将多条直线或多边形存储在单个地理要素中（如，Shapefile中的一行表示多个线或多边形对象）非常有用。点集合通过使用MultiPoint对象实现，曲线集合通过使用MultiLineString对象实现，面集合通过MultiPolygon对象实现。这些集合在计算上并不重要，但对于建模某些类型的要素非常有用。Y形线要素（如道路）或多个多边形（如岛等）可以通过相应地使用MultiLineString或MultiPolygon很好地作为一个整体表达。创建和可视化MBR（例如围绕数据点）对于许多目的（例如试图理解数据的范围）都是非常有用的功能。</p>
+<p><font color=Blue size=5>可以通过以下方式来构建几何集合对象：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import collections of geometric objects + bounding box</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">MultiPoint</span><span class="p">,</span> <span class="n">MultiLineString</span><span class="p">,</span> <span class="n">MultiPolygon</span><span class="p">,</span> <span class="n">box</span>
+
+<span class="c1"># Create a MultiPoint object of our points 1,2 and 3</span>
+<span class="n">multi_point</span> <span class="o">=</span> <span class="n">MultiPoint</span><span class="p">([</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">])</span>
+
+<span class="c1"># It is also possible to pass coordinate tuples inside</span>
+<span class="n">multi_point2</span> <span class="o">=</span> <span class="n">MultiPoint</span><span class="p">([(</span><span class="mf">111.89</span><span class="p">,</span> <span class="mf">25.78</span><span class="p">),</span> <span class="p">(</span><span class="mf">115.69</span><span class="p">,</span> <span class="mf">23.68</span><span class="p">),</span> <span class="p">(</span><span class="mf">117.89</span><span class="p">,</span> <span class="mf">26.78</span><span class="p">)])</span>
+
+<span class="c1"># We can also create a MultiLineString with two lines</span>
+<span class="n">line1</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([</span><span class="n">point1</span><span class="p">,</span> <span class="n">point2</span><span class="p">])</span>
+
+<span class="n">line2</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([</span><span class="n">point2</span><span class="p">,</span> <span class="n">point3</span><span class="p">])</span>
+
+<span class="n">multi_line</span> <span class="o">=</span> <span class="n">MultiLineString</span><span class="p">([</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">])</span>
+
+<span class="n">west_exterior</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)]</span>
+
+<span class="n">west_hole</span> <span class="o">=</span> <span class="p">[[(</span><span class="o">-</span><span class="mi">170</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">170</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">80</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">)]]</span>
+
+<span class="c1"># Create the Polygon</span>
+<span class="n">west_poly</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="n">west_exterior</span><span class="p">,</span> <span class="n">holes</span><span class="o">=</span><span class="n">west_hole</span><span class="p">)</span>
+
+<span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span>
+<span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">90</span>
+
+<span class="c1"># Create the polygon using box() function</span>
+<span class="n">east_poly_box</span> <span class="o">=</span> <span class="n">box</span><span class="p">(</span><span class="n">minx</span><span class="o">=</span><span class="n">min_x</span><span class="p">,</span> <span class="n">miny</span><span class="o">=</span><span class="n">min_y</span><span class="p">,</span> <span class="n">maxx</span><span class="o">=</span><span class="n">max_x</span><span class="p">,</span> <span class="n">maxy</span><span class="o">=</span><span class="n">max_y</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s create our MultiPolygon. We can pass multiple Polygon -objects into our MultiPolygon as a list</span>
+<span class="n">multi_poly</span> <span class="o">=</span> <span class="n">MultiPolygon</span><span class="p">([</span><span class="n">west_poly</span><span class="p">,</span> <span class="n">east_poly_box</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MultiPoint:&quot;</span><span class="p">,</span> <span class="n">multi_point</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MultiLine: &quot;</span><span class="p">,</span> <span class="n">multi_line</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bounding box: &quot;</span><span class="p">,</span> <span class="n">east_poly_box</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MultiPoly: &quot;</span><span class="p">,</span> <span class="n">multi_poly</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multi_line</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multi_poly</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id5">
+<h3><span class="section-number">9.5.1. </span><font color=Blue size=5><strong>几何集合对象的属性与方法</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convex Hull of our MultiPoint</span>
+<span class="n">convex</span> <span class="o">=</span> <span class="n">multi_point</span><span class="o">.</span><span class="n">convex_hull</span>
+
+<span class="c1"># How many lines do we have inside our MultiLineString?</span>
+<span class="n">lines_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">multi_line</span><span class="p">)</span>
+
+<span class="c1"># Let&#39;s calculate the area of our MultiPolygon</span>
+<span class="n">multi_poly_area</span> <span class="o">=</span> <span class="n">multi_poly</span><span class="o">.</span><span class="n">area</span>
+
+<span class="c1"># 可以访问几何集合中的不同项。</span>
+<span class="n">west_area</span> <span class="o">=</span> <span class="n">multi_poly</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">area</span>
+
+<span class="c1"># 可以检测几何对象是否有效，多边形的环不能有重叠，线几何不能自相交</span>
+<span class="n">valid</span> <span class="o">=</span> <span class="n">multi_poly</span><span class="o">.</span><span class="n">is_valid</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Convex hull of the points: &quot;</span><span class="p">,</span> <span class="n">convex</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of lines in MultiLineString:&quot;</span><span class="p">,</span> <span class="n">lines_count</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Area of our MultiPolygon:&quot;</span><span class="p">,</span> <span class="n">multi_poly_area</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Area of our Western Hemisphere polygon:&quot;</span><span class="p">,</span> <span class="n">west_area</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is polygon valid?: &quot;</span><span class="p">,</span> <span class="n">valid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2><span class="section-number">9.6. </span><font color=Blue size=5><strong>几何对象通用属性和方法</strong><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>几何对象通用属性和方法如下：</p>
+<ul class="simple">
+<li><p><font color=Blue size=5>object.area – 返回几何对象的面积(float) 。</p></li>
+<li><p><font color=Blue size=5>object.bounds – 返回几何对象的MBR (minx, miny, maxx, maxy) 。</p></li>
+<li><p><font color=Blue size=5>object.length – 返回几何对象的长度。</p></li>
+<li><p><font color=Blue size=5>object.minimum_clearance – 返回可移动节点以生成无效几何对象的最小距离。这可以被认为是几何对象稳健性的度量，其中最小间隙的较大值表示更稳健的几何结构。如果几何对象（如点）不存在最小间隙，则返回math.infinity。</p></li>
+<li><p><font color=Blue size=5>object.geom_type – 返回几何对象的字符串几何类型。</p></li>
+<li><p><font color=Blue size=5>object.distance(other) – 返回几何对象与其它几何对象(other)的最短距离(float)。</p></li>
+<li><p><font color=Blue size=5>object.hausdorff_distance(other) – 返回几何对象与其它几何对象(other)的Hausdorff距离。两个几何体之间的Hausdorff距离是任意一个几何对象上的一个点与另一个几何对象上的最近点之间的最远距离。</p></li>
+<li><p><font color=Blue size=5>object.representative_point() – 返回一个廉价计算的点，该点保证位于几何对象内。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">poly</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span><span class="o">.</span><span class="n">minimum_clearance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">geom_type</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="nb">type</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span><span class="o">.</span><span class="n">hausdorff_distance</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">donut</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">donut</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">donut</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">donut</span><span class="o">.</span><span class="n">centroid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">donut</span><span class="o">.</span><span class="n">representative_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">donut</span><span class="o">.</span><span class="n">representative_point</span><span class="p">()</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id7">
+<h1><span class="section-number">10. </span><font color=Blue size=5><strong>空间谓词与空间关系</strong><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h1>
+<p><font color=Blue size=5>几何对象提供了标准谓词作为属性（一元谓词）和方法（二元谓词）。无论一元还是二元谓词，都返回True或False。</p>
+<section id="font-color-blue-size-5-unary-predicates">
+<h2><span class="section-number">10.1. </span><font color=Blue size=5><strong>一元谓词（Unary Predicates）</strong><a class="headerlink" href="#font-color-blue-size-5-unary-predicates" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>标准的一元谓词实现为几何对象的只读属性。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.has_z</strong>: 如果要素不仅具有x和y坐标，还具有z坐标的3D（或所谓的2.5D）几何图形，则返回True。</p></li>
+<li><p><font color=Blue size=5><strong>object.is_ccw</strong>: 如果坐标按逆时针方向排列（用正号的面积包围一个区域带），则返回True。此方法仅适用于LinearRing对象。</p></li>
+<li><p><font color=Blue size=5><strong>object.is_empty</strong>: 如果要素的内部（interior）和边界（boundary）都为空集，则返回True。</p></li>
+<li><p><font color=Blue size=5><strong>object.is_ring</strong>: 如果要素是闭合的简单LineString，则返回True。闭合线要素的边界（boundary）为空集。此属性适用于LineString和LinearRing实例，对其他实例没有意义。</p></li>
+<li><p><font color=Blue size=5><strong>object.is_simple</strong>: 如果要素没有自相交，则返回True。该属性仅对linestring和linearring有意义。</p></li>
+<li><p><font color=Blue size=5><strong>object.is_valid</strong>: 如果要素符合OGC简单要素访问规范意义上的“有效”，则返回True。一个有效的LinearRing不能自交叉，或在单个点相接（touch）。有效的多边形不能有任何重叠的外环或内环。有效的MultiPolygon不能有任何重叠的多边形。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">has_z</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">has_z</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">LinearRing</span>
+
+<span class="n">LinearRing</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)])</span><span class="o">.</span><span class="n">is_ccw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A ring with an undesired orientation can be reversed like this:</span>
+
+<span class="n">ring</span> <span class="o">=</span> <span class="n">LinearRing</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)])</span>
+<span class="n">ring</span><span class="o">.</span><span class="n">is_ccw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ring</span><span class="o">.</span><span class="n">coords</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ring</span><span class="o">.</span><span class="n">coords</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ring</span><span class="o">.</span><span class="n">is_ccw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">()</span><span class="o">.</span><span class="n">is_empty</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">is_empty</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+<span class="n">line</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span><span class="o">.</span><span class="n">is_ring</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ring</span> <span class="o">=</span> <span class="n">LinearRing</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+<span class="n">ring</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ring</span><span class="o">.</span><span class="n">is_ring</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">line</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span><span class="o">.</span><span class="n">is_simple</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span> <span class="o">=</span> <span class="n">MultiPolygon</span><span class="p">([</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)])</span>
+<span class="n">poly</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span><span class="o">.</span><span class="n">is_valid</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="font-color-blue-size-5-binary-predicates">
+<h2><span class="section-number">10.2. </span><font color=Blue size=5><strong>二元谓词（Binary Predicates）</strong><a class="headerlink" href="#font-color-blue-size-5-binary-predicates" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>标准二元谓词作为方法实现。二元谓词用于检测两个几何对象之间的拓扑关系、基于集合理论的关系。二元谓词都以另一个几何对象作为参数，并返回True或False。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5> <strong>object.<strong>eq</strong>(other)</strong>: 如果两个对象具有相同的几何类型，并且两个对象的坐标精确匹配，则返回True。</p></li>
+<li><p><font color=Blue size=5> <strong>object.equals(other)</strong>: 如果对象的边界、内部和外部与其他对象的边界、内部和外部一致，则返回True。<br />
+<font color=Blue size=5>传递给对象构造函数的坐标是这些集合的一部分，但不是集合的整体。例如，等效线的构造可以不同。</p></li>
+<li><p><font color=Blue size=5><strong>object.almost_equals(other[, decimal=6])</strong>: 如果对象在指定小数点精度的所有点上都近似等于其它对象上的所有点，则返回True。</p></li>
+<li><p><font color=Blue size=5><strong>object.contains(other)</strong>: 如果该对象包含其它几何对象，则返回True。即：如果其它几何对象没有点位于该几何对象的外部，且其他几何对象内部至少有一个点位于该几何对象内部，则返回True。该谓词适用于所有几何类型，与within（）相反。表达式a.contains(b) == b.within(a).</p></li>
+<li><p><font color=Blue size=5><strong>object.within(other)</strong>: 如果对象的边界和内部仅与另一个对象的内部（而不是其边界或外部）相交，则返回True。a.within(b) == b.contains(a)</p></li>
+<li><p><font color=Blue size=5><strong>object.crosses(other)</strong>: 如果该对象穿越其它对象，则返回True，如线穿越面。即，如果该对象的内部与另一个对象内部相交但不包含该内部，并且相交的维度小于其中一个的维度，则返回True。</p></li>
+<li><p><font color=Blue size=5><strong>object.disjoint(other)</strong>: 如果对象的边界和内部与另一个对象的边界和内部完全不相交，则返回True。</p></li>
+<li><p><font color=Blue size=5><strong>object.intersects(other)</strong>: 如果对象的边界或内部以任何方式与其他对象的边界或内部相交，则返回True。换句话说，如果几何对象有共同的边界或内部点，它们就会相交。</p></li>
+<li><p><font color=Blue size=5><strong>object.overlaps(other)</strong>: 如果两个相同几何维度的几何对象具有多个但不是所有的公共点，且它们的内部交集也具有相同的几何维度，则返回True。</p></li>
+<li><p><font color=Blue size=5><strong>object.touches(other)</strong>: 如果两个几何对象至少有一个公共点，并且它们的内部不与另一个的任何部分相交，则返回True。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">a</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">==</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coords</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="n">LineString</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">LineString</span><span class="p">(</span><span class="n">coords</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LineString</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LineString</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="o">.</span><span class="n">crosses</span><span class="p">(</span><span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LineString</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="o">.</span><span class="n">crosses</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">disjoint</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="n">a</span><span class="o">.</span><span class="n">touches</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h2><span class="section-number">10.3. </span><font color=Blue size=5><strong>九交模型关系</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>两个几何对象之间的空间关系通常可以通过基于维数扩展的九交模型（DE-9IM）即九交矩阵来表达，反过来，也可以给定一个九交矩阵（或对应的字符串），来检测两个几何对象是否满足九交矩阵对应的空间关系。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.relate(other)</strong>: 返回该对象的内部、边界、外部和其他几何对象的内部、边界、外部之间关系的DE-9IM矩阵的字符串表示。</p></li>
+<li><p><font color=Blue size=5><strong>object.relate_pattern(other, pattern)</strong>: 如果几何对象空间关系的DE-9IM字符串满足pattern模式，则返回True，否则返回False。relate_pattern()将两个几何对象空间关系的DE-9IM字符串与指定的模式进行比较，如果字符串与模式匹配，则返回True，否则返回False。指定的模式可以是完全匹配（0、1或2）、布尔匹配（T或F）或<code class="docutils literal notranslate"><span class="pre">通配符（*）</span></code>。例如，within谓词的模式是<code class="docutils literal notranslate"><span class="pre">T******FF*</span></code>。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">relate</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">relate</span><span class="p">(</span><span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">square</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="n">square</span><span class="o">.</span><span class="n">relate_pattern</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="s1">&#39;T*****FF*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that the order or the geometries is significant, as demonstrated below. </span>
+<span class="c1"># In this example the square contains the point, but the point does not contain the square.</span>
+<span class="n">point</span><span class="o">.</span><span class="n">relate</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="o">.</span><span class="n">relate</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id9">
+<h1><span class="section-number">11. </span><font color=Blue size=5><strong>空间操作运算</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h1>
+<p><font color=Blue size=5>Shapely还提供了空间操作运算来产生新的几何对象。</p>
+<section id="id10">
+<h2><span class="section-number">11.1. </span><font color=Blue size=5><strong>基于集合理论的操作运算</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>几乎每个二元谓词方法都有一个对应的空间操作运算返回一个新的几何对象。此外，几何对象的边界为只读属性。
+<font color=Blue size=5>空间操作运算总是返回一个几何对象。例如，不相交几何对象的交集将返回空的GeometryCollection，而不是None或False。若要测试一个几何对象是否为空，可以使用is_empty属性。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.boundary</strong>：返回几何对象的边界。多边形的边界为线（即多边形的边界环），线的边界是点的集合（即线几何的端点），点的边界是空集（null）。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coords</span> <span class="o">=</span> <span class="p">[((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))]</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">MultiLineString</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+<span class="n">lines</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span><span class="o">.</span><span class="n">boundary</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">lines</span><span class="o">.</span><span class="n">boundary</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">lines</span><span class="o">.</span><span class="n">boundary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">boundary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.centroid</strong>：返回几何对象的质心(point)。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">centroid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.difference(other)</strong>: 该几何对象去除与其它几何对象的公共部分。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.intersection(other)</strong>: 返回两个几何对象的交集（即公共部分）。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.symmetric_difference(other)</strong>: 去除两个几何对象的公共部分，其余部分保留。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.union(other)</strong>: 返回两个几何对象的并集（即所有部分）。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">boundary</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">boundary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.buffer(distance, resolution=16, cap_style=1, join_style=1, mitre_limit=5.0, single_sided=False)</strong>: 返回几何对象给定距离的缓冲区多边形。<br />
+<font color=Blue size=5><strong>cap_style</strong>参数: 用于确定线末端缓冲类型：1 (round，圆头), 2 (flat, 扁平), 3 (square，方形)，对应shapely.geometry.CAP_STYLE的值。<br />
+<font color=Blue size=5><strong>join_style</strong>参数: 用于确定线段之间连接类型：1 (round，圆头), 2 (mitre，锐角斜接), 3 (bevel，平头斜切)，对应shapely.geometry.JOIN_STYLE 的值。<br />
+<font color=Blue size=5>可选的<strong>resolution参数</strong>：确定用于表达四分之一圆弧的线段数。<br />
+<font color=Blue size=5><strong>distance</strong>：正距离具有扩张效应，正常的内外缓冲；负距离表现为侵蚀效应，一般仅做内缓冲。<br />
+<img alt="image.png" src="attachment:ae6db83b-700b-4133-859e-d5c124775eff.png" />
+<font color=Blue size=5><strong>single_sided</strong>: 为True，仅做单边缓冲；distance为正，做左边缓冲；distance为负，做右边缓冲。<br />
+<img alt="image.png" src="attachment:aa31644b-59a2-4ebc-9059-77a929c3660e.png" /></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">CAP_STYLE</span><span class="p">,</span> <span class="n">JOIN_STYLE</span>
+<span class="n">CAP_STYLE</span><span class="o">.</span><span class="n">flat</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">JOIN_STYLE</span><span class="o">.</span><span class="n">bevel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="n">line</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dilated</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">dilated</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eroded</span> <span class="o">=</span> <span class="n">dilated</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">eroded</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="n">left_hand_side</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">single_sided</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">left_hand_side</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">right_hand_side</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">single_sided</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">right_hand_side</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.convex_hull</strong>: 返回几何对象（构成几何对象的点数&gt;=3）的最小凸多边形；点数为2时，最小凸多边形退化为一线段；点数为1时，最小凸多边形退化为一个点。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">convex_hull</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MultiPoint</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">convex_hull</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MultiPoint</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">convex_hull</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.envelope</strong>: 返回几何对象的最小外包矩形MBR，MBR的两边平行于坐标轴。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">envelope</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MultiPoint</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">envelope</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>object.minimum_rotated_rectangle</strong>: 返回最小外包矩形，不要求与坐标轴平行，可旋转。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">minimum_rotated_rectangle</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MultiPoint</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)])</span><span class="o">.</span><span class="n">minimum_rotated_rectangle</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul>
+<li><p><font color=Blue size=5><strong>object.parallel_offset(distance, side, resolution=16, join_style=1, mitre_limit=5.0)</strong>: 返回距离对象右侧或左侧一定距离的LineString或MultiLineString几何对象。</p>
+<p><font color=Blue size=5><strong>distance</strong>参数：必须为正的浮点数。<br />
+<font color=Blue size=5><strong>side</strong>参数：为‘left’ 或 ‘right’. ‘left’ 、 ‘right’是根据LineString的给定几何点的方向来确定的。右侧偏移，按与原始线串或线环相反的方向返回，而左侧偏移，按与原始线串或线环相同的方向返回。<br />
+<img alt="image.png" src="attachment:52419b8b-fd55-4324-accd-79fd5f4a913b.png" /></p>
+<p><font color=Blue size=5><strong>resolution</strong>参数：确定用于表达四分之一圆弧的线段数。<br />
+<font color=Blue size=5><strong>join_style</strong>参数：用于线段之间连接类型：1 (round，圆头), 2 (mitre，锐角斜接), 3 (bevel，平头斜切)。<br />
+<font color=Blue size=5><strong>mitre_limit</strong>参数：用于控制斜接角（mitre）。平行线的转角将比斜接样式的大多数地方离原始位置更远。此距离与指定距离<strong>distance</strong>的比值为斜接比。比例超过限制的角将被平头斜切（bevel）。
+该方法仅适用于LinearRing和LineString.<br />
+<img alt="image.png" src="attachment:fe839b86-a181-4890-adb9-9ecc5bdc4829.png" /></p>
+</li>
+</ul>
+<ul>
+<li><p><font color=Blue size=5><strong>object.simplify(tolerance, preserve_topology=True)</strong>: 返回简化后的几何对象。<br />
+<font color=Blue size=5>简化对象中的所有点都将在原始几何图形的容差范围内。默认情况下，使用较慢的算法来保留拓扑。如果preserve topology设置为False，则使用更快的Douglas-Peucker算法。</p>
+<p><img alt="image.png" src="attachment:acb2d63c-5e72-4450-af32-b8fed3fe0264.png" /></p>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">area</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">preserve_topology</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">area</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h2><span class="section-number">11.2. </span><font color=Blue size=5><strong>其它操作运算</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.polygonize(lines)</strong>: 由线几何生成多边形几何对象，返回由输入线构造的多边形的迭代器。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">MultiLineString</span><span class="p">,</span> <span class="n">MultiPolygon</span><span class="p">,</span> <span class="n">MultiPoint</span>
+<span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">polygonize</span><span class="p">,</span> <span class="n">polygonize_full</span><span class="p">,</span> <span class="n">linemerge</span><span class="p">,</span> <span class="n">unary_union</span><span class="p">,</span> <span class="n">triangulate</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">MultiLineString</span><span class="p">([</span>
+    <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="p">])</span>
+<span class="n">lines</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polys</span> <span class="o">=</span> <span class="n">polygonize</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<span class="n">polylist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">polys</span><span class="p">)</span>
+<span class="n">polylist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mp</span> <span class="o">=</span> <span class="n">MultiPolygon</span><span class="p">(</span><span class="n">polylist</span><span class="p">)</span>
+<span class="n">mp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.polygonize_full(lines)</strong>: 返回多边形及剩余的线几何。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lines</span> <span class="o">=</span>  <span class="n">MultiLineString</span><span class="p">([</span>
+    <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">)),</span>
+    <span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="p">])</span> 
+<span class="n">lines</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="p">,</span> <span class="n">dangles</span><span class="p">,</span> <span class="n">cuts</span><span class="p">,</span> <span class="n">invalids</span> <span class="o">=</span> <span class="n">polygonize_full</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cuts</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dangles</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dangles</span><span class="o">.</span><span class="n">to_wkt</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.linemerge(lines)</strong>: 返回合并后的线几何：LineString或MultiLineString。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ml</span> <span class="o">=</span> <span class="n">linemerge</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+<span class="n">ml</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">ml</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">linemerge</span><span class="p">(</span><span class="n">lines</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.unary_union(geoms)</strong>: 返回geoms的并集。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polygons</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">mp</span> <span class="o">=</span> <span class="n">MultiPolygon</span><span class="p">(</span><span class="n">polygons</span><span class="p">)</span>
+<span class="n">mp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">poly</span> <span class="o">=</span> <span class="n">unary_union</span><span class="p">(</span><span class="n">polygons</span><span class="p">)</span>
+<span class="n">poly</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.triangulate(geom, tolerance=0.0, edges=False)</strong>: 构建三角网。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="n">MultiPoint</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="n">triangles</span> <span class="o">=</span> <span class="n">triangulate</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+<span class="n">mp</span> <span class="o">=</span> <span class="n">MultiPolygon</span><span class="p">(</span><span class="n">triangles</span><span class="p">)</span>
+<span class="n">mp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">([</span><span class="n">triangle</span><span class="o">.</span><span class="n">wkt</span> <span class="k">for</span> <span class="n">triangle</span> <span class="ow">in</span> <span class="n">triangles</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">triangles</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.nearest_points(geom1, geom2)</strong>: 返回输入几何图形中最近点的元组。返回点的顺序与输入几何图形的顺序相同。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">nearest_points</span> 
+
+<span class="n">triangle</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="n">triangle</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="n">square</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">wkt</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">nearest_points</span><span class="p">(</span><span class="n">triangle</span><span class="p">,</span> <span class="n">square</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.snap(geom1, geom2, tolerance)</strong>: 将geom1中的顶点捕捉到geom2中的顶点。将返回捕捉的几何图形的副本，不会修改输入几何图形。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">snap</span>
+
+<span class="n">square</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">square</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">),</span> <span class="p">(</span><span class="mf">2.6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)])</span>
+<span class="n">line</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">snap</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">square</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.shared_paths(geom1, geom2)</strong>:<br />
+当两个几何图形都为LineStrings时，查找geom1和geom2之间的共享路径。<br />
+当两个几何图形为GeometryCollection时，返回两个元素。第一个元素是包含两个输入方向相同的共享路径，第二个元素是包含两个输入方向相反的共享路径。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">shapely.ops</span>
+
+<span class="n">g1</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="n">forward</span><span class="p">,</span> <span class="n">backward</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">shared_paths</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="n">g2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forward</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backward</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.split(geom, splitter)</strong>:<br />
+一个几何对象被另一个几何对象拆分（分割），返回拆分后的几何对象的集合GEOMETRYCOLLECTION。该方法支持：<br />
+用(Multi)Point或(Multi)LineString 或(Multi)Polygon的边界拆分（分割）(Multi)LineString。
+用LineString拆分（分割）(Multi)Polygon。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">split</span>
+
+<span class="n">pt</span> <span class="o">=</span> <span class="n">Point</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">pt</span><span class="p">)</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.substring(geom, start_dist, end_dist[, normalized=False])</strong>: 返回沿线几何对象指定距离之间的线段。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">substring</span>
+
+<span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">substring</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">wkt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id12">
+<h2><span class="section-number">11.3. </span><font color=Blue size=5><strong>仿射变换</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<p><font color=Blue size=5>shapely.affinity模块提供了一组仿射变换函数，它们通过直接将系数提供给仿射变换矩阵，或通过使用特定的命名变换（旋转、缩放等）来返回变换后的几何图形。这些函数可以用于所有几何类型（GeometryCollection除外）。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.affinity.affine_transform(geom, matrix)</strong>: 使用仿射变换矩阵返回变换后的几何对象。<br />
+<font color=Blue size=5>系数矩阵以列表或元组的形式提供，分别为6项或12项用于二维或三维变换。
+<font color=Blue size=5>对应二维变换，6参数矩阵为：[a, b, d, e, xoff, yoff]，对应的仿射变换为：<br />
+<img alt="image.png" src="attachment:aac9219c-54df-4223-afcd-e516fff040f2.png" /><br />
+<font color=Blue size=5>对应三维变换，12参数矩阵为：[a, b, c, d, e, f, g, h, i, xoff, yoff, zoff]，对应的仿射变换为：<br />
+<img alt="image.png" src="attachment:b8ef1229-9a79-468e-83d8-cd6265cb0c76.png" /></p></li>
+<li><p><font color=Blue size=5><strong>shapely.affinity.rotate(geom, angle, origin=‘center’, use_radians=False)</strong>: 返回二维平面上旋转后的几何对象。<br />
+<font color=Blue size=5>旋转角度angle参数：可以通过use_radians参数设置为度（默认）或弧度。正角度是逆时针方向，负角度是顺时针方向。<br />
+<font color=Blue size=5>旋转原点origin参数：取值为“center”（默认）、“centroid”（几何体的质心）、点对象或坐标元组（x0，y0）。<br />
+<font color=Blue size=5>二维旋转角度θ的仿射变换矩阵是：<br />
+<img alt="image.png" src="attachment:fcfef00c-2cf9-40c7-8d7d-a6ea0891f2f8.png" /></p></li>
+</ul>
+<p><img alt="image.png" src="attachment:1085d3ca-884c-40ff-94ff-e8cc5cca6c4b.png" /><br />
+<center><font color=Blue size=4>使用不同的原点逆时针旋转90度° </center></p>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.affinity.scale(geom, xfact=1.0, yfact=1.0, zfact=1.0, origin=‘center’)</strong>: 返回缩放后的几何对象。</p></li>
+<li><p><font color=Blue size=5><strong>shapely.affinity.skew(geom, xs=0.0, ys=0.0, origin=‘center’, use_radians=False)</strong>: 返回一个倾斜后的几何对象。</p></li>
+<li><p><font color=Blue size=5><strong>shapely.affinity.translate(geom, xoff=0.0, yoff=0.0, zoff=0.0)</strong>: 返回平移后的几何对象。</p></li>
+</ul>
+<p><font color=Blue size=5><strong>其它变换</strong><br />
+<font color=Blue size=5>Shapely支持几何对象的地图投影和任意变换。</p>
+<ul class="simple">
+<li><p><font color=Blue size=5><strong>shapely.ops.transform(func, geom)</strong><br />
+将func应用于geom的所有坐标，并从变换后的坐标中返回相同类型的新几何对象。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely</span> <span class="kn">import</span> <span class="n">affinity</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">line</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotated_a</span> <span class="o">=</span> <span class="n">affinity</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">rotated_a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rotated_b</span> <span class="o">=</span> <span class="n">affinity</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;centroid&#39;</span><span class="p">)</span>
+<span class="n">rotated_b</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "gewios/geojb",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter1_base.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span><font color=Blue size=5><strong>开放科学与开放GIS(Open Science and Open GIS)</strong></p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">9. <font color="Blue" size="5"><strong>几何对象模型概述</strong></font></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-point">9.1. <font color="Blue" size="5"><strong>Point</strong></font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.1.1. <font color="Blue" size="5"><strong>Point的属性与方法</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-linestring">9.2. <font color="Blue" size="5"><strong>LineString</strong></font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">9.2.1. <font color="Blue" size="5"><strong>LineString的属性与方法</strong></font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-linear-referencing">9.2.2. <font color="Blue" size="5"><strong>线性参考（Linear Referencing）</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-polygon">9.3. <font color="Blue" size="5"><strong>Polygon</strong></font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9.3.1. <font color="Blue" size="5"><strong>Polygon的属性与方法</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-xy">9.4. <font color="Blue" size="5"><strong>从文本文件中读取XY坐标</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">9.5. <font color="Blue" size="5"><strong>几何集合对象</strong></font></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">9.5.1. <font color="Blue" size="5"><strong>几何集合对象的属性与方法</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">9.6. <font color="Blue" size="5"><strong>几何对象通用属性和方法</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">10. <font color="Blue" size="5"><strong>空间谓词与空间关系</strong></font></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-unary-predicates">10.1. <font color="Blue" size="5"><strong>一元谓词（Unary Predicates）</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#font-color-blue-size-5-binary-predicates">10.2. <font color="Blue" size="5"><strong>二元谓词（Binary Predicates）</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">10.3. <font color="Blue" size="5"><strong>九交模型关系</strong></font></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">11. <font color="Blue" size="5"><strong>空间操作运算</strong></font></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">11.1. <font color="Blue" size="5"><strong>基于集合理论的操作运算</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">11.2. <font color="Blue" size="5"><strong>其它操作运算</strong></font></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">11.3. <font color="Blue" size="5"><strong>仿射变换</strong></font></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
