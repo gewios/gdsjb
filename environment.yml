@@ -1,0 +1,33 @@
+channels:
+  - conda-forge
+  - default
+dependencies:
+  - python=3.8
+  - jupyter
+  - jupyterlab>3
+  - ipython
+  - jupyter-book
+  - jupytext
+  - myst-nb
+  - myst-parser
+  - numpy
+  - shapely
+  - pandas
+  - geopandas
+  - pygeos
+  - rasterio
+  - rasterstats
+  - matplotlib
+  - mapclassify
+  - cartopy
+  - contextily
+  - geoplot
+  - ipympl
+  - ipyleaflet
+  - folium
+  - hvplot
+  - geoviews
+  - pyepsg
+  - pip
+  - pip:
+    - jupyterlab-myst
